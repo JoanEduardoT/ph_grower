@@ -21,43 +21,33 @@ ChartJS.register(
 
 
 export const LineC = () => {
-/*   const [chart, setchart] = useState([]);
 
-  var baseUrl = 'http://localhost:4000/api/ph/4';
-  var proxyUrl = 'http://localhost:5173/';
+  const [chart, setChart] = useState([]);
+
+  var baseUrl = 'http://localhost:4000/api/ph/3';
 
   useEffect(() => {
     const fetch_ph = async () => {
-      await fetch(`${proxyUrl}${baseUrl}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token':"",
-          'Access-Control-Allow-Origin': "*"
-        }
+      await fetch(`${baseUrl}`)
+      .then((response)=> {
+        response.json().then((json)=>{
+          console.log(json)
+          setChart(json)
+        })
+      }).catch(error =>{
+        console.log(error)
       })
-        .then((response) => {
-          if (response.ok) {
-            response=> response.json().then((json) => {
-              console.log(json.data);
-              setchart(json.data)
-            });
-          }
-        }).catch((error) => {
-          console.log(error);
-        });
     }
     fetch_ph() 
-  }, [baseUrl,proxyUrl,""])
+  }, [baseUrl])
 
-  console.log("chart", chart); */
-  
-  /* datos para la tabla de linea */
+  const promedio =chart.map(x=>x.promedio)
+
   const dataLine={
     labels: ['Lunes','Martes','Miercoles','Jueves','Sabado','Domingo'],
     datasets:[{
       label:'Nivel promedio del ph',
-      data: "",
+      data: promedio,
       borderColor: 'green',
       backgroundColor:'green',
       tension: 0.4

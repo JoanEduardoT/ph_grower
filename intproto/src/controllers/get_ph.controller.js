@@ -105,7 +105,7 @@ const percent_mensual = async (req, res) => {
         //COLUMNA
         
         const result = await connection.query(
-            `SELECT 'alacalino' AS estado, (COUNT(CASE WHEN ph >=11  THEN 1 END)) AS promedio FROM sensor_ph WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) UNION ALL
+            `SELECT 'alcalino' AS estado, (COUNT(CASE WHEN ph >=11  THEN 1 END)) AS promedio FROM sensor_ph WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) UNION ALL
             SELECT 'neutro' AS estado, (COUNT(CASE WHEN ph >=6 and ph <=10 THEN 1 END)) AS promedio FROM sensor_ph WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) UNION ALL
             SELECT 'acido' AS estado, (COUNT(CASE WHEN ph <=5 THEN 1 END)) AS promedio FROM sensor_ph WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);`
         )
